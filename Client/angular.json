@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "User": {
+    "user": {
       "projectType": "application",
       "schematics": {},
       "root": "projects/user",
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "User:build:production"
+              "buildTarget": "user:build:production"
             },
             "development": {
-              "buildTarget": "User:build:development"
+              "buildTarget": "user:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -92,7 +92,7 @@
         }
       }
     },
-    "Admin": {
+    "admin": {
       "projectType": "application",
       "schematics": {},
       "root": "projects/admin",
@@ -116,7 +116,7 @@
               }
             ],
             "styles": [
-              "projects/admin/src/styles.css" ,
+              "projects/admin/src/styles.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": []
@@ -149,10 +149,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Admin:build:production"
+              "buildTarget": "admin:build:production"
             },
             "development": {
-              "buildTarget": "Admin:build:development"
+              "buildTarget": "admin:build:development"
             }
           },
           "defaultConfiguration": "development"

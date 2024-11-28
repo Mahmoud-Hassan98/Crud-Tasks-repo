@@ -1,8 +1,5 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './features/auth/components/login/login.component';
-
-// Importing Material modules
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,14 +8,16 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
-// Standalone Component Setup
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    MatListModule,
+    MatSidenavModule,
     RouterOutlet,
-    LoginComponent,
     MatButtonModule,
     MatToolbarModule,
     MatFormFieldModule,
@@ -32,18 +31,4 @@ import { MatDividerModule } from '@angular/material/divider';
   styleUrls: ['./app.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  // Define both signals
-  hideMultipleSelectionIndicator = signal(false);
-  hideSingleSelectionIndicator = signal(false);  // Added this line
-
-  toggleSingleSelectionIndicator() {
-    this.hideSingleSelectionIndicator.update(value => !value);
-  }
-
-  toggleMultipleSelectionIndicator() {
-    this.hideMultipleSelectionIndicator.update(value => !value);
-  }
-  
-  title = 'Admin';
-}
+export class AppComponent {}

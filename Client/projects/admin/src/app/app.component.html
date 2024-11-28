@@ -1,39 +1,24 @@
-<section>
-  <mat-checkbox
-    [checked]="hideSingleSelectionIndicator()"
-    (change)="toggleSingleSelectionIndicator()"
-  >
-    Hide Single Selection Indicator
-  </mat-checkbox>
-  <mat-checkbox
-    [checked]="hideMultipleSelectionIndicator()"
-    (change)="toggleMultipleSelectionIndicator()"
-  >
-    Hide Multiple Selection Indicator
-  </mat-checkbox>
-</section>
-<section>
-  <h3>Single selection</h3>
-  <mat-button-toggle-group
-    name="favoriteColor"
-    aria-label="Favorite Color"
-    [hideSingleSelectionIndicator]="hideSingleSelectionIndicator()"
-  >
-    <mat-button-toggle value="red">Red</mat-button-toggle>
-    <mat-button-toggle value="green">Green</mat-button-toggle>
-    <mat-button-toggle value="blue">Blue</mat-button-toggle>
-  </mat-button-toggle-group>
-</section>
-<section>
-  <h3>Multiple selection</h3>
-  <mat-button-toggle-group
-    name="ingredients"
-    aria-label="Ingredients"
-    [hideMultipleSelectionIndicator]="hideMultipleSelectionIndicator()"
-    multiple
-  >
-    <mat-button-toggle value="flour">Flour</mat-button-toggle>
-    <mat-button-toggle value="eggs">Eggs</mat-button-toggle>
-    <mat-button-toggle value="sugar">Sugar</mat-button-toggle>
-  </mat-button-toggle-group>
-</section>
+// app.component.html
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My App</span>
+  <span class="spacer"></span>
+  <button mat-button>Login</button>
+  <button mat-button>Signup</button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-nav-list>
+      <a mat-list-item href="#">Home</a>
+      <a mat-list-item href="#">About</a>
+      <a mat-list-item href="#">Services</a>
+      <a mat-list-item href="#">Contact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p>Content goes here</p>
+  </mat-sidenav-content>
+</mat-sidenav-container>

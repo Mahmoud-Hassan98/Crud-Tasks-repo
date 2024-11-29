@@ -1,17 +1,3 @@
-<mat-toolbar color="primary">
-  <span>My App</span>
-</mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" [opened]="true">
-    <mat-nav-list>
-      <a mat-list-item href="#">Home</a>
-      <a mat-list-item href="#">About</a>
-      <a mat-list-item href="#">Services</a>
-      <a mat-list-item href="#">Contact</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<app-header></app-header>
+<router-outlet></router-outlet> 
+<!-- <app-login></app-login> -->

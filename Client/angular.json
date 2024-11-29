@@ -16,9 +16,7 @@
             "outputPath": "dist/user",
             "index": "projects/user/src/index.html",
             "browser": "projects/user/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/user/tsconfig.app.json",
             "assets": [
               {
@@ -26,9 +24,7 @@
                 "input": "projects/user/public"
               }
             ],
-            "styles": [
-              "projects/user/src/styles.css"
-            ],
+            "styles": ["projects/user/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -73,10 +69,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/user/tsconfig.spec.json",
             "assets": [
               {
@@ -84,9 +77,7 @@
                 "input": "projects/user/public"
               }
             ],
-            "styles": [
-              "projects/user/src/styles.css"
-            ],
+            "styles": ["projects/user/src/styles.css"],
             "scripts": []
           }
         }
@@ -105,9 +96,7 @@
             "outputPath": "dist/admin",
             "index": "projects/admin/src/index.html",
             "browser": "projects/admin/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/admin/tsconfig.app.json",
             "assets": [
               {
@@ -117,9 +106,18 @@
             ],
             "styles": [
               "projects/admin/src/styles.css",
-              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/mdbootstrap/css/mdb.min.css",
+              "node_modules/mdb-ui-kit/css/mdb.min.css"
             ],
-            "scripts": []
+
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/mdb-ui-kit/js/mdb.es.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -163,10 +161,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/admin/tsconfig.spec.json",
             "assets": [
               {
@@ -176,9 +171,18 @@
             ],
             "styles": [
               "projects/admin/src/styles.css",
-              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/mdbootstrap/css/mdb.min.css",
+              "node_modules/mdb-ui-kit/css/mdb.min.css"
             ],
-            "scripts": []
+
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/@popperjs/core/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/mdb-ui-kit/js/mdb.es.min.js"
+            ]
           }
         }
       }

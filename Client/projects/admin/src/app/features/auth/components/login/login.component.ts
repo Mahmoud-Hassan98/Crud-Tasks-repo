@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { LoginService } from './../../services/login.service';
 import { Component } from '@angular/core';
 import {
@@ -10,11 +11,12 @@ import {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule , CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder, private loginService: LoginService) {
@@ -22,8 +24,21 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-  }
+    this.loginForm.valueChanges.subscribe((value: any) => {
+console.log(value);
 
+    })
+    
+  }
+  get email()
+    {
+    return this.loginForm.get('email');
+  }
+  get password()
+    {
+    return this.loginForm.get('password');
+  }
+      
   onSubmit() {
     if (this.loginForm.valid) {
       this.loginService.login(
@@ -44,4 +59,6 @@ export class LoginComponent {
       console.error('Form is invalid');
     }
   }
+
+  
 }

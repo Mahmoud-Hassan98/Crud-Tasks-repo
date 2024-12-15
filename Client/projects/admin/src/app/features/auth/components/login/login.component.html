@@ -32,6 +32,14 @@
               placeholder="Enter a valid email address" formControlName="email" />
             <label class="form-label" for="form3Example3">Email address</label>
           </div>
+          <div *ngIf="email?.invalid && email?.touched">
+            <div *ngIf="email?.errors?.['required']" class="invalid-feedback d-block">
+              Email is required.
+            </div>
+            <div *ngIf="email?.errors?.['email']" class="invalid-feedback d-block">
+              Please enter a valid email address.
+            </div>
+          </div>
           
 
           <!-- Password input -->

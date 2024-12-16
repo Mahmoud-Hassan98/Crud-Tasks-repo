@@ -1,0 +1,6 @@
+.link-active {
+    color: black !important;  /* Set the text color to black */
+    font-weight: bold !important;  /* Make the font bold */
+    font-size: 16px !important;  /* Increase the font size */
+  }
+  

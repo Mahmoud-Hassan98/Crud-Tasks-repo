@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+
 
 export interface PeriodicElement {
   name: string;
@@ -23,7 +25,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 @Component({
   selector: 'app-manage-tasks',
-  imports: [MatTableModule],
+  imports: [MatTableModule , MatButtonModule],
   templateUrl: './manage-tasks.component.html',
   styleUrl: './manage-tasks.component.css'
 })
@@ -34,5 +36,11 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ManageTasksComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  addTask() :void {
+    console.log("new task added ");
+    
+
+  }
 
 }

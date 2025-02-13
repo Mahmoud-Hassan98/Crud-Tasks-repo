@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-
-
+import { MatDialog } from '@angular/material/dialog';
+import { TaskFormComponent } from '../task-form/task-form.component';
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -31,16 +31,24 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 
-
-
 export class ManageTasksComponent {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+ constructor (private dialog : MatDialog) {
 
-  addTask() :void {
-    console.log("new task added ");
+
+ }
+ addTask(): void {
+  const dialogRef = this.dialog.open(TaskFormComponent, {
+    width: '800px', 
+  });
+  
+  dialogRef.afterClosed().subscribe(result => {
+    if (result?.success) {
+      console.log('Task added successfully!');
     
-
-  }
+    }
+  });
+}
 
 }

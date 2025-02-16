@@ -4,41 +4,47 @@
     Add Task
   </button>
 </div>
-
 <table
   mat-table
-  [dataSource]="dataSource"
+  [dataSource]="tasks"
   class="mat-elevation-z8"
-  style="width: 100%; max-width: 1200px;"
+  style="table-layout: fixed; width: 100%; max-width: 1200px;"
   aria-label="Task Table"
 >
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> No. </th>
-    <td mat-cell *matCellDef="let element"> {{ element.position }} </td>
+    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
   </ng-container>
 
-  <!-- Name Column -->
+  <!-- Task Name Column -->
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Name </th>
+    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Task Name </th>
     <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
   </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{ element.weight }} </td>
+  <!-- User Column -->
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> User </th>
+    <td mat-cell *matCellDef="let element"> {{ element.user }} </td>
   </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{ element.symbol }} </td>
+  <!-- Deadline Column -->
+  <ng-container matColumnDef="deadline">
+    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Deadline </th>
+    <td mat-cell *matCellDef="let element"> {{ element.deadline | date: 'short' }} </td>
   </ng-container>
 
-  <!-- Header and Row Definitions -->
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Description </th>
+    <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
+  </ng-container>
+
+  <!-- Table Rows -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
 
 </div>

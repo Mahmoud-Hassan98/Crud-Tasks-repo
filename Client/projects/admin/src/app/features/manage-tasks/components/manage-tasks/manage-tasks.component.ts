@@ -1,54 +1,59 @@
-import { Component } from '@angular/core';
-import {MatTableModule} from '@angular/material/table';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../task-form/task-form.component';
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { ManageTaskService } from '../../services/manage-task.service';
+import { DatePipe } from '@angular/common'; 
+import { ToastrService } from 'ngx-toastr';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
 
 @Component({
   selector: 'app-manage-tasks',
-  imports: [MatTableModule , MatButtonModule],
+  imports: [MatTableModule, MatButtonModule, DatePipe],
   templateUrl: './manage-tasks.component.html',
-  styleUrl: './manage-tasks.component.css'
+  styleUrls: ['./manage-tasks.component.css'],
+  providers: [DatePipe],
 })
+export class ManageTasksComponent implements OnInit {
+  tasks: any[] = [];
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'user',
+    'deadline',
+    'description',
+  ];
+
+  constructor(
+    private dialog: MatDialog,
+    private manageTaskService: ManageTaskService,
+    private cdr: ChangeDetectorRef,
+    private toaster: ToastrService,
 
 
-export class ManageTasksComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
- constructor (private dialog : MatDialog) {
+  ) {}
 
+  ngOnInit(): void {
+    this.loadTasks();
+  }
 
- }
- addTask(): void {
-  const dialogRef = this.dialog.open(TaskFormComponent, {
-    width: '800px', 
-  });
-  
-  dialogRef.afterClosed().subscribe(result => {
-    if (result?.success) {
-      console.log('Task added successfully!');
-    
-    }
-  });
-}
+  loadTasks(): void {
+    this.tasks = this.manageTaskService.getTasks();
+    this.cdr.detectChanges();
+  }
 
+  addTask(): void {
+    const dialogRef = this.dialog.open(TaskFormComponent, {
+      width: '800px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result?.success) {
+        this.loadTasks();
+        this.toaster.success('success', 'Task added successfully');
+        console.log('Task added successfully!');
+      }
+    });
+  }
 }

@@ -1,14 +1,19 @@
-<h2 mat-dialog-title style="font-weight: bold;">Add Task</h2>
+<h2 mat-dialog-title style="font-weight: bold">Add Task</h2>
 <mat-dialog-content>
-    <form #taskForm="ngForm" (ngSubmit)="onSave()">
-        <mat-form-field appearance="fill">
+  <form [formGroup]="taskForm" >
+    <mat-form-field appearance="fill">
       <mat-label>Task Name</mat-label>
-      <input [(ngModel)]="task.name" name="name" required matInput placeholder="Enter task name">
+      <input
+        formControlName = "name" required
+        name="name"
+        matInput
+        placeholder="Enter task name"
+      />
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>User</mat-label>
-      <mat-select [(ngModel)]="task.user" name="user" required>
+      <mat-select formControlName = "user" required>
         <mat-option value="one">First option</mat-option>
         <mat-option value="two">Second option</mat-option>
       </mat-select>
@@ -16,19 +21,41 @@
 
     <mat-form-field>
       <mat-label>Deadline Date</mat-label>
-      <input [(ngModel)]="task.deadline" matInput [matDatepicker]="picker" name="deadline" required>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <input
+        formControlName = "deadline" required
+        matInput
+        [matDatepicker]="picker"
+        name="deadline"
+        
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Textarea</mat-label>
-      <textarea [(ngModel)]="task.description" name="description" required matInput rows="5"></textarea>
+      <textarea
+       formControlName = "description"
+        name="description"
+        matInput
+        rows="5"
+      ></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="onClose()">Cancel</button>
-  <button mat-button color="primary" type="button" (click)="onSave()" [disabled]="!taskForm.form.valid">Save</button>
+  <button
+    mat-button
+    color="primary"
+    type="button"
+    (click)="onSave()"
+    [disabled]="!taskForm.valid"
+  >
+    Save
+  </button>
 </mat-dialog-actions>

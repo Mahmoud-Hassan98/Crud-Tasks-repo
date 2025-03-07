@@ -12,4 +12,4 @@ pool  = new Pool ({
 pool.connect()
   .then(() => console.log('Connected to PostgreSQL database'))
   .catch((err) => console.error('Connection error', err.stack));
-module.exports = Pool
+  module.exports = pool;

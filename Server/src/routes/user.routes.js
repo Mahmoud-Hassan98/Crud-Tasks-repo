@@ -7,3 +7,5 @@ router.get("/get-all-users", authMiddleware ,  userController.getAllUsersControl
 
 
 module.exports = router;
+
+

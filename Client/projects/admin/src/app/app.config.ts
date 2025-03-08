@@ -12,9 +12,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimations(),
     provideToastr({
-      timeOut: 3000, // Default duration for toast messages
-      positionClass: 'toast-top-right', // Position of the toast
-      preventDuplicates: true, // Prevent duplicate toasts
+      timeOut: 3000, 
+      positionClass: 'toast-top-right',
+      preventDuplicates: true, 
     }),
   ],
 };

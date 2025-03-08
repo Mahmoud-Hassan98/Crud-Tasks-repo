@@ -1,12 +1,15 @@
-const express = require('express');
-const db = require('./config/db.js');
-const app = express(); 
+const express = require("express");
+const db = require("./config/db.js");
+const cors = require('cors');
+const app = express();
+const adminRoutes = require("./routes/admin.routes.js");
+const userRoutes = require("./routes/user.routes.js");
 app.use(express.json());
-const adminRoutes = require('./routes/admin.routes.js');
+app.use(cors());
 
 
-
-app.use('/admin/', adminRoutes)
+app.use("/admin/", adminRoutes);
+app.use("/user/", userRoutes);
 
 
 

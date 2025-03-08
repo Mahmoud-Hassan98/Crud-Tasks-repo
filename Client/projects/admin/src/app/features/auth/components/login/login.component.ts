@@ -12,11 +12,10 @@ import {
 import { Router } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule , NgxSpinnerModule],
+  imports: [ReactiveFormsModule, CommonModule, NgxSpinnerModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -34,9 +33,7 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-    this.loginForm.valueChanges.subscribe((value: any) => {
-      console.log(value);
-    });
+    this.loginForm.valueChanges.subscribe((value: any) => {});
   }
   get email() {
     return this.loginForm.get('email');
@@ -53,15 +50,16 @@ export class LoginComponent {
           next: (response) => {
             this.toaster.success('success', 'Login Success');
             this.spinner.show();
-            this.router.navigate(['/tasks']);
-            this.spinner.hide();
-            console.log(response);
+            setTimeout(() => {
+              this.spinner.hide();
+              this.router.navigate(['/tasks']);
+            }, 1000);
           },
           error: (error) => {
             this.spinner.hide();
-            this.toaster.error(error.error);
+
+            this.toaster.error(error.error.message);
             this.spinner.hide();
-            console.error(error);
           },
           complete: () => {
             console.log('Login completed');

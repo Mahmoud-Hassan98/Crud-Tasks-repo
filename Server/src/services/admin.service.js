@@ -1,15 +1,21 @@
-const db = require('../config/db.js');
+const db = require("../config/db.js");
+const jwtGenerator = require("../utils/jwtGenerator.js");
 
 const getAdminToken = async (email, password) => {
-  console.log(email);
-  console.log(password);
-
   try {
-    const result = await db.query("SELECT * FROM admins WHERE email = $1 AND password = $2", [email, password]);
-    console.log(result.rows); // This will give you the actual rows
-    return result.rows;
+    const result = await db.query(
+      "SELECT * FROM admins WHERE email = $1 AND password = $2",
+      [email, password]
+    );
+
+    if (result.rows.length === 0) {
+      throw new Error("Email or password is incorrect");
+    }
+    const adminToken = jwtGenerator(result.rows[0]);
+
+    return adminToken;
   } catch (error) {
-    console.error('Error during database query:', error);
+    console.error("Error during database query:", error);
     throw error;
   }
 };

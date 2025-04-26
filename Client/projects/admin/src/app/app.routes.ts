@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'users', component: ManageUsersComponent },
   { path: 'tasks', component: ManageTasksComponent },
-  { path: 'tasks', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];

@@ -1,0 +1,19 @@
+.task-container {
+    background-color: #ffffff; /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .task-container table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  
+  mat-header-cell, mat-cell {
+    padding: 8px;
+  }
+  
+  .mat-column-description, .mat-column-deadline {
+    width: 25%; /* Adjust as needed */
+  }
+  

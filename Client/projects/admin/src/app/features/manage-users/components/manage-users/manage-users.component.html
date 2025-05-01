@@ -1,1 +1,45 @@
-<p>manage-users works!</p>
+<div class="task-container p-4">
+    <input type="search">
+    <table
+      mat-table
+      [dataSource]="users"
+      class="mat-elevation-z8"
+      style="table-layout: fixed; width: 100%; max-width: 1200px;"
+      aria-label="Task Table"
+      >
+      <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+        </ng-container>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Name </th>
+        <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
+    </ng-container>
+    
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Email </th>
+        <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="assigned task">
+        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Assigned Tasks</th>
+        <td mat-cell *matCellDef="let element"> {{ element.user }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Status </th>
+        <td mat-cell *matCellDef="let element"> {{ element.deadline | date: 'short' }} </td>
+      </ng-container>
+    
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Action </th>
+        <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
+    
+    </div>
+    

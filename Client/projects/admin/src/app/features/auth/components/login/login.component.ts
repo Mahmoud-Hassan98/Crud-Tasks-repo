@@ -20,7 +20,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
 
   constructor(
     private fb: FormBuilder,

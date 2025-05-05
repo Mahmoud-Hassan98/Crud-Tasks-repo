@@ -1,5 +1,12 @@
 import { Routes } from '@angular/router';
-import { SingUpComponent } from './features/sing-up/sing-up.component';
+import { SignUpComponent } from './features/auth/components/sing-up/sign-up.component';
+import { LoginComponent } from './features/auth/components/login/login.component';
+import { MyTasksComponent } from './features/my-tasks/components/my-tasks/my-tasks.component';
 
+export const routes: Routes = [
+  { path: '', component: MyTasksComponent },
+  { path: 'sing-up', component: SignUpComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'my-tasks', component: MyTasksComponent },
 
-export const routes: Routes = [{path:'', component : SingUpComponent},{path:'sing-up', component : SingUpComponent},];
+];

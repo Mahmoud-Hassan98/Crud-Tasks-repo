@@ -9,7 +9,7 @@
           />
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form  [formGroup]="singUpFrom" (ngSubmit)="onSubmit()" >
+          <form  [formGroup]="signUpForm" (ngSubmit)="onSubmit()" >
             <div
               class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"
             >
@@ -66,7 +66,7 @@
               />
               <label class="form-label" for="form3Example3">Email address</label>
             </div>
-            <!-- <div *ngIf="email?.invalid && email?.touched">
+            <div *ngIf="email?.invalid && email?.touched">
               <div
                 *ngIf="email?.errors?.['required']"
                 class="invalid-feedback d-block"
@@ -79,7 +79,7 @@
               >
                 Please enter a valid email address.
               </div>
-            </div> -->
+            </div>
   
             <!-- Password input -->
              
@@ -93,6 +93,21 @@
                 formControlName="password"
               />
               <label class="form-label" for="form3Example4">Password</label>
+              
+            </div>
+            <div *ngIf="password?.invalid && password?.touched">
+              <div
+                *ngIf="password?.errors?.['required']"
+                class="invalid-feedback d-block"
+              >
+              password is required.
+              </div>
+              <div
+                *ngIf="password?.errors?.['minlength']"
+                class="invalid-feedback d-block"
+              >
+                Please enter a valid password address.
+              </div>
             </div>
   
             <div class="d-flex justify-content-between align-items-center">
@@ -118,6 +133,7 @@
                 data-mdb-ripple-init
                 class="btn btn-primary btn-lg"
                 style="padding-left: 2.5rem; padding-right: 2.5rem"
+                [disabled]="signUpForm.invalid"
               >
               Sign Up
               </button>

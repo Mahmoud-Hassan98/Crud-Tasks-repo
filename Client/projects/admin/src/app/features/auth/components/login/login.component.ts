@@ -33,7 +33,7 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
-    this.loginForm.valueChanges.subscribe((value: any) => {});
+    // this.loginForm.valueChanges.subscribe((value: any) => {});
   }
   get email() {
     return this.loginForm.get('email');

@@ -18,7 +18,7 @@ export class AuthService {
     return this.http.post("http://localhost:8080/auth/register", user).pipe(
       catchError((error) => {
         console.error("Error during signup:", error);
-        return throwError(error);  // You can return an observable that handles the error as you see fit
+        return throwError(error);  
       })
     );
   }

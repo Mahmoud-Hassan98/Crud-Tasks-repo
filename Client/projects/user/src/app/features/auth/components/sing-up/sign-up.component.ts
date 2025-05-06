@@ -31,9 +31,20 @@ export class SignUpComponent   {
     return this.signUpForm.get('password')
   }
 
-  onSubmit():void{
-         this.AuthService.singUp(this.signUpForm.value)
-       
+  onSubmit(): void {
+    console.log(this.signUpForm.value);
+    
+    this.AuthService.signUp(this.signUpForm.value).subscribe({
+      next: (response) => {
+        console.log('Signup successful:', response);
+        // Optionally redirect or show a success message
+      },
+      error: (error) => {
+        console.error('Signup failed:', error);
+        // Optionally show an error message to the user
+      }
+    });
   }
+  
 
 }

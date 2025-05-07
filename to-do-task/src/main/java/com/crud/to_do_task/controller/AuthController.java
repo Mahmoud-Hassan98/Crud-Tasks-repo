@@ -1,5 +1,6 @@
 package com.crud.to_do_task.controller;
 import com.crud.to_do_task.dto.AuthResponse;
+import com.crud.to_do_task.dto.LoginRequest;
 import com.crud.to_do_task.dto.RegisterRequest;
 import com.crud.to_do_task.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,11 @@ public class AuthController {
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest user) {
         AuthResponse response = authService.register(user);
         return ResponseEntity.ok(response);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        System.out.println(request);
+          AuthResponse response = authService.login(request);
+         return  ResponseEntity.ok(response) ;
     }
 }

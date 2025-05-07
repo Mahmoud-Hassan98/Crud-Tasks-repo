@@ -17,11 +17,14 @@
             <a class="nav-link" routerLinkActive="link-active" routerLink="/users">Users</a>
           </li> -->
         </ul>
-        <form class="d-flex" role="search">
+        <form *ngIf="!isLoggedIn"  class="d-flex" role="search">
           <a class="btn btn-outline-secondary text-light" routerLink="/sing-up">Sing Up</a>
       </form>
-        <form class="d-flex" role="search">
+        <form *ngIf="!isLoggedIn" class="d-flex" role="search">
           <a class="btn btn-outline-secondary text-light" routerLink="/login">Login</a>
+      </form>
+        <form  *ngIf="isLoggedIn" class="d-flex" role="search">
+          <a (click)="logout();"   class="btn btn-outline-secondary text-light" routerLink="/login">Logout</a>
       </form>
       </div>
     </div>

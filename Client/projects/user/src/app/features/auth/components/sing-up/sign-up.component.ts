@@ -2,17 +2,19 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-sign-up',
-  imports: [ReactiveFormsModule ,CommonModule],
+  imports: [ReactiveFormsModule ,CommonModule , NgxSpinnerModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent   {
   signUpForm! : FormGroup ;
   
-  constructor(private fb:FormBuilder ,  private AuthService : AuthService){
+  constructor(private fb:FormBuilder ,  private AuthService : AuthService, private spinner: NgxSpinnerService , private router : Router){
 
     this.signUpForm =   this.fb.group({
           userName : ["" , [Validators.required]],
@@ -21,9 +23,6 @@ export class SignUpComponent   {
 
     })
   }
-
-  
-
   get email (){
     return this.signUpForm.get('email')
   }
@@ -36,12 +35,16 @@ export class SignUpComponent   {
     
     this.AuthService.signUp(this.signUpForm.value).subscribe({
       next: (response) => {
+        this.spinner.show();
         console.log('Signup successful:', response);
-        // Optionally redirect or show a success message
+        setTimeout(() => {
+        this.spinner.hide();
+        this.router.navigate(['/my-tasks'])
+          
+        }, 2000);
       },
       error: (error) => {
         console.error('Signup failed:', error);
-        // Optionally show an error message to the user
       }
     });
   }

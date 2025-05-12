@@ -14,8 +14,7 @@
     <mat-form-field appearance="fill">
       <mat-label>User</mat-label>
       <mat-select formControlName = "user" required>
-        <mat-option value="one">First option</mat-option>
-        <mat-option value="two">Second option</mat-option>
+        <mat-option *ngFor="let user of users" [value]="user.id">{{user.username}}</mat-option>
       </mat-select>
     </mat-form-field>
 

@@ -61,6 +61,7 @@ export interface Task {
   styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent implements OnInit {
+   users! : any[];
   taskForm!: FormGroup;
   constructor(
     private dialogRef: MatDialogRef<TaskFormComponent>,
@@ -68,6 +69,18 @@ export class TaskFormComponent implements OnInit {
     private ManageTaskService : ManageTaskService ,
   ) {}
   ngOnInit(): void {
+     this.ManageTaskService.getAllUsers().subscribe(
+      (data)=>{
+        this.users = data
+        console.log(this.users);
+        
+      },
+      (error) => {
+                console.error('Error fetching users', error);
+
+      }
+     )
+
     this.taskForm = this.fb.group({
       name: ['', Validators.required],
       user: ['', Validators.required],
@@ -87,4 +100,5 @@ export class TaskFormComponent implements OnInit {
       alert('Please fill in all the required fields');
     }
   }
+  
 }

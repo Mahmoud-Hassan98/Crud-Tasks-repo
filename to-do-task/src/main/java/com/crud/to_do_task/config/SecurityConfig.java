@@ -27,11 +27,11 @@ public class SecurityConfig {
         http  .cors(Customizer.withDefaults())
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**", "/auth/**").permitAll()
+                        .requestMatchers("/h2-console/**", "/auth/**","/user/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**", "/auth/**")
+                        .ignoringRequestMatchers("/h2-console/**", "/auth/**" ,"/user/**")
                 )
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.sameOrigin())

@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { TaskFormComponent } from '../task-form/task-form.component';
 import { ManageTaskService } from '../../services/manage-task.service';
-import { DatePipe } from '@angular/common'; 
+import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-
 
 @Component({
   selector: 'app-manage-tasks',
@@ -16,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   providers: [DatePipe],
 })
 export class ManageTasksComponent implements OnInit {
-  tasks: any[] = [];
+  tasks = new MatTableDataSource<any>();
   displayedColumns: string[] = [
     'position',
     'name',
@@ -29,9 +28,7 @@ export class ManageTasksComponent implements OnInit {
     private dialog: MatDialog,
     private manageTaskService: ManageTaskService,
     private cdr: ChangeDetectorRef,
-    private toaster: ToastrService,
-
-
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -39,8 +36,14 @@ export class ManageTasksComponent implements OnInit {
   }
 
   loadTasks(): void {
-    this.tasks = this.manageTaskService.getTasks();
-    this.cdr.detectChanges();
+    this.manageTaskService.getTasks().subscribe({
+      next: (tasks) => {
+        this.tasks.data = tasks ?? [];
+      },
+      error: (err) => {
+        console.error('Failed to load tasks', err);
+      },
+    });
   }
 
   addTask(): void {
@@ -50,9 +53,10 @@ export class ManageTasksComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result?.success) {
-        this.loadTasks();
+        console.log(result.task);
+        this.tasks.data = [...this.tasks.data, result.task];
+
         this.toaster.success('success', 'Task added successfully');
-        console.log('Task added successfully!');
       }
     });
   }

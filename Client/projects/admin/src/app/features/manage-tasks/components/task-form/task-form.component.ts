@@ -4,7 +4,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ManageTaskService } from './../../services/manage-task.service';
@@ -34,7 +34,7 @@ export const MY_DATE_FORMATS = {
 };
 export interface Task {
   name: string;
-  user: string;
+  userId: number;
   deadline: string;
   description: string;
 }
@@ -61,29 +61,26 @@ export interface Task {
   styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent implements OnInit {
-   users! : any[];
+  users!: any[];
   taskForm!: FormGroup;
   constructor(
     private dialogRef: MatDialogRef<TaskFormComponent>,
     private fb: FormBuilder,
-    private ManageTaskService : ManageTaskService ,
+    private ManageTaskService: ManageTaskService
   ) {}
   ngOnInit(): void {
-     this.ManageTaskService.getAllUsers().subscribe(
-      (data)=>{
-        this.users = data
-        console.log(this.users);
-        
+    this.ManageTaskService.getAllUsers().subscribe(
+      (data) => {
+        this.users = data;
       },
       (error) => {
-                console.error('Error fetching users', error);
-
+        console.error('Error fetching users', error);
       }
-     )
+    );
 
     this.taskForm = this.fb.group({
       name: ['', Validators.required],
-      user: ['', Validators.required],
+      userId: ['', Validators.required],
       deadline: [null, Validators.required],
       description: [''],
     });
@@ -91,14 +88,29 @@ export class TaskFormComponent implements OnInit {
   onClose(): void {
     this.dialogRef.close();
   }
-  onSave(): void {
-    if (this.taskForm.valid) {
-      const task: Task = this.taskForm.value as Task;
-      this.ManageTaskService.addTask(task);  // Save task in localStorage
-      this.dialogRef.close({ success: true });  // Close dialog and notify success
-    } else {
-      alert('Please fill in all the required fields');
-    }
+onSave(): void {
+  if (this.taskForm.valid) {
+    const task: Task = this.taskForm.value as Task;
+    const formattedDeadline = formatDate(task.deadline, 'yyyy-MM-dd', 'en-US');
+    task.deadline = formattedDeadline;
+
+    this.ManageTaskService.addTask(task).subscribe(
+      (response) => {
+        this.dialogRef.close({ success: true , task : response });
+      },
+      (error) => {
+        console.error('Error adding task:', error);
+        alert('An error occurred while saving the task.');
+      }
+    );
+  } else {
+    alert('Please fill in all the required fields');
   }
-  
+}
+
+
+
+
+
+
 }

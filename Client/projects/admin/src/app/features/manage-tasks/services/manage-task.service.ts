@@ -1,26 +1,34 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ManageTaskService {
-  getTasks(): any[] {
-    let tasks: any[] = [];
-    const tasksJson = localStorage.getItem('tasks');
-    tasks = tasksJson ? JSON.parse(tasksJson) : [];
-    return tasks;
-  }
-  addTask(task: any): void {
-    const tasks = this.getTasks();
-    tasks.push(task);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-  }
+ getTasks(): Observable<any[]> {
+  return this.http.get<any[]>("http://localhost:8080/task/get-tasks").pipe(
+    tap(response => {
+    }),
+    catchError((error) => {
+      console.error("Error during fetch tasks:", error);
+      return throwError(() => error);
+    })
+  );
+}
+addTask(task: any): Observable<any> {
+  return this.http.post<any>('http://localhost:8080/task/add-task', task).pipe(
+    tap({
+      next: (response) => {
+      },
+      error: (error) => {
+        console.error('Error occurred while adding task:', error);
+      }
+    })
+  );
+}
   removeTask(taskIndex: number): void {
-    const tasks = this.getTasks();
-    tasks.splice(taskIndex, 1);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+
   }
   getAllUsers(): Observable<any[]> {
    return this.http.get<any[]>("http://localhost:8080/user/get-users")

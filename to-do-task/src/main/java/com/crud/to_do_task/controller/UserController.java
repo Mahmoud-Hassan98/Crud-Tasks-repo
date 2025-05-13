@@ -1,6 +1,6 @@
 package com.crud.to_do_task.controller;
 
-import com.crud.to_do_task.dto.UserResponse;
+import com.crud.to_do_task.dto.UserRequest;
 import com.crud.to_do_task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +15,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/get-users")
-    public ResponseEntity<List<UserResponse>> getUsers() {
-        System.out.println(1111);
-        List<UserResponse> response = userService.getUsers();
+    public ResponseEntity<List<UserRequest>> getUsers() {
+        List<UserRequest> response = userService.getUsers();
         return ResponseEntity.ok(response);
     }
 }

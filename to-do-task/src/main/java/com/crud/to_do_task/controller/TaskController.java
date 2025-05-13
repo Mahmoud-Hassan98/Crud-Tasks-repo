@@ -1,22 +1,34 @@
 package com.crud.to_do_task.controller;
 
-import com.crud.to_do_task.model.entity.Task;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.crud.to_do_task.dto.TaskRequest;
+import com.crud.to_do_task.service.TaskService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/task")
 
 
 public class TaskController {
-
+  @Autowired
+    TaskService taskService;
 
     @PostMapping("/add-task")
-    public Task createTask(@RequestBody Task task){
+    public ResponseEntity<TaskRequest> createTask(@RequestBody TaskRequest task){
+        TaskRequest response  = taskService.creatTask(task);
+        System.out.println(response);
+        return ResponseEntity.ok(response);
+    }
 
-        return task;
+    @GetMapping("/get-tasks")
+    public ResponseEntity<List<TaskRequest>> getAllTasks() {
+        List<TaskRequest> response = taskService.getTasks();
+        return ResponseEntity.ok(response);
     }
 
 

@@ -1,18 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManageUsersService {
-  users : any[] = []
-  getUsers() : any[] {
-    let  users : any[] = [] 
 
-    
-   return users
+  getAllUsers(): Observable<any[]> {
+   return this.http.get<any[]>("http://localhost:8080/user/get-users")
+
   }
-
-  constructor() { 
+  constructor(private http : HttpClient) { 
     
   }
 }

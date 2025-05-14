@@ -18,4 +18,5 @@ public class TaskRequest {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate deadline;
     private  String description ;
+    private String  status;
 }

@@ -17,6 +17,8 @@ export class ManageTaskService {
   );
 }
 addTask(task: any): Observable<any> {
+  console.log(task);
+  
   return this.http.post<any>('http://localhost:8080/task/add-task', task).pipe(
     tap({
       next: (response) => {

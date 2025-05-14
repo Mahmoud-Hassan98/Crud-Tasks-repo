@@ -20,8 +20,8 @@ public class TaskController {
 
     @PostMapping("/add-task")
     public ResponseEntity<TaskRequest> createTask(@RequestBody TaskRequest task){
+        System.out.println(task);
         TaskRequest response  = taskService.creatTask(task);
-        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 

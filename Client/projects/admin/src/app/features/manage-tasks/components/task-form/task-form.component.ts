@@ -21,6 +21,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { ManageUsersService } from '../../../manage-users/services/manage-users.service';
 export const MY_DATE_FORMATS = {
   parse: {
     dateInput: 'l',
@@ -37,6 +38,7 @@ export interface Task {
   userId: number;
   deadline: string;
   description: string;
+  status: string;
 }
 @Component({
   selector: 'app-task-form',
@@ -67,11 +69,14 @@ export class TaskFormComponent implements OnInit {
     private dialogRef: MatDialogRef<TaskFormComponent>,
     private fb: FormBuilder,
     private ManageTaskService: ManageTaskService
+    , private ManageUsersService :ManageUsersService
   ) {}
   ngOnInit(): void {
-    this.ManageTaskService.getAllUsers().subscribe(
+    this.ManageUsersService.getAllUsers().subscribe(
       (data) => {
         this.users = data;
+        console.log( this.users);
+        
       },
       (error) => {
         console.error('Error fetching users', error);
@@ -83,34 +88,34 @@ export class TaskFormComponent implements OnInit {
       userId: ['', Validators.required],
       deadline: [null, Validators.required],
       description: [''],
+      status: 'In-Progress',
     });
   }
   onClose(): void {
     this.dialogRef.close();
   }
-onSave(): void {
-  if (this.taskForm.valid) {
-    const task: Task = this.taskForm.value as Task;
-    const formattedDeadline = formatDate(task.deadline, 'yyyy-MM-dd', 'en-US');
-    task.deadline = formattedDeadline;
+  onSave(): void {
+    if (this.taskForm.valid) {
+      const task: Task = this.taskForm.value as Task;
+      const formattedDeadline = formatDate(
+        task.deadline,
+        'yyyy-MM-dd',
+        'en-US'
+      );
+      task.deadline = formattedDeadline;
+      console.log(task);
 
-    this.ManageTaskService.addTask(task).subscribe(
-      (response) => {
-        this.dialogRef.close({ success: true , task : response });
-      },
-      (error) => {
-        console.error('Error adding task:', error);
-        alert('An error occurred while saving the task.');
-      }
-    );
-  } else {
-    alert('Please fill in all the required fields');
+      this.ManageTaskService.addTask(task).subscribe(
+        (response) => {
+          this.dialogRef.close({ success: true, task: response });
+        },
+        (error) => {
+          console.error('Error adding task:', error);
+          alert('An error occurred while saving the task.');
+        }
+      );
+    } else {
+      alert('Please fill in all the required fields');
+    }
   }
-}
-
-
-
-
-
-
 }

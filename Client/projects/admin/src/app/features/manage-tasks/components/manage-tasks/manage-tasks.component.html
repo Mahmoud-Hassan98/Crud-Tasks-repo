@@ -40,6 +40,14 @@
     <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Description </th>
     <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
   </ng-container>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Status </th>
+    <td mat-cell *matCellDef="let element">{{element.status}} </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Action </th>
+    <td mat-cell *matCellDef="let element"> Update / Delete  </td>
+  </ng-container>
 
   <!-- Table Rows -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

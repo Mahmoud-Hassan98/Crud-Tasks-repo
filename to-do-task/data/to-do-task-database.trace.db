@@ -4,3 +4,6 @@ select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only [42104
 2025-05-13 06:11:10.769894+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
 select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only [42104-232]
+2025-05-14 05:48:28.748876+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Delete [*]* FROM TASKS"; expected "identifier"; SQL statement:
+Delete * FROM TASKS [42001-232]

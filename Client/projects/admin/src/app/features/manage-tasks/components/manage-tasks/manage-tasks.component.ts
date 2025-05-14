@@ -22,6 +22,8 @@ export class ManageTasksComponent implements OnInit {
     'user',
     'deadline',
     'description',
+    'status',
+    'action',
   ];
 
   constructor(

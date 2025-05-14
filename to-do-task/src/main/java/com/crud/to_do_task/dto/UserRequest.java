@@ -12,5 +12,5 @@ public class UserRequest {
     Long id ;
     String username;
     String email ;
-
+    private Long assignedTasks;
 }

@@ -26,8 +26,9 @@ public class TaskService {
          task.setName(request.getName());
          task.setDeadline(request.getDeadline());
          task.setDescription(request.getDescription());
+         task.setStatus(request.getStatus());
          taskRepository.save(task);
-         return new TaskRequest(task.getId() , task.getName() , task.getUser().getId() , task.getUser().getUsername() , task.getDeadline() , task.getDescription());
+         return new TaskRequest(task.getId() , task.getName() , task.getUser().getId() , task.getUser().getUsername() , task.getDeadline() , task.getDescription() , task.getStatus());
      }
      public List<TaskRequest> getTasks(){
          return taskRepository.findAll().stream().map(task-> new TaskRequest(
@@ -36,7 +37,7 @@ public class TaskService {
                  task.getUser().getId(),
                  task.getUser().getUsername(),
                  task.getDeadline() ,
-                 task.getDescription()))
+                 task.getDescription(), task.getStatus()))
                  .collect(Collectors.toList());
 
 

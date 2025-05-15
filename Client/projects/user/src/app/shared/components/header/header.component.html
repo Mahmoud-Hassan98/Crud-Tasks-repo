@@ -1,31 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <!-- <li class="nav-item">
-            <a  routerLinkActive="link-active" 
-            class="nav-link active" aria-current="page" routerLink="/tasks">Home</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link"  routerLinkActive="link-active" routerLink="/my-tasks">My tasks</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLinkActive="link-active" routerLink="/users">Users</a>
-          </li> -->
-        </ul>
-        <form *ngIf="!isLoggedIn"  class="d-flex" role="search">
-          <a class="btn btn-outline-secondary text-light" routerLink="/sing-up">Sing Up</a>
-      </form>
-        <form *ngIf="!isLoggedIn" class="d-flex" role="search">
-          <a class="btn btn-outline-secondary text-light" routerLink="/login">Login</a>
-      </form>
-        <form  *ngIf="isLoggedIn" class="d-flex" role="search">
-          <a (click)="logout();"   class="btn btn-outline-secondary text-light" routerLink="/login">Logout</a>
-      </form>
-      </div>
+
+  <nav class="navbar navbar-expand-lg navbar-scroll fixed-top shadow-0 border-bottom border-dark" data-mdb-navbar-init appScrollNavbar>
+  <div class="container">
+    <a class="navbar-brand" href="#!"><i class="fab fa-mdb fa-4x"></i></a>
+    <button class="navbar-toggler" type="button" data-mdb-collapse-init
+      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="link-active" routerLink="/my-tasks" >My Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!">Membership</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!">Write</a>
+        </li>
+        <li class="nav-item">
+          <a  *ngIf="!isLoggedIn"  routerLinkActive="link-active" class="nav-link" routerLink="/login">Sign In</a>
+        </li>
+        <button *ngIf="!isLoggedIn"  type="button" class="btn btn-dark ms-3" routerLink="/sing-up" >JOIN US </button>
+        <button  *ngIf="isLoggedIn" (click)="logout();"   type="button" class="btn btn-dark ms-3" routerLink="/sing-up" >Logout </button>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

@@ -25,17 +25,15 @@
               }
             ],
             "styles": [
-              "projects/admin/src/styles.css",
+              "projects/user/src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/mdbootstrap/css/mdb.min.css",
-              "node_modules/mdb-ui-kit/css/mdb.min.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
             ],
+
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/mdb-ui-kit/js/mdb.es.min.js"
             ]
@@ -94,17 +92,14 @@
               }
             ],
             "styles": [
-              "projects/admin/src/styles.css",
+              "projects/user/src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/mdbootstrap/css/mdb.min.css",
-              "node_modules/mdb-ui-kit/css/mdb.min.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/mdb-ui-kit/js/mdb.es.min.js"
             ]
@@ -137,17 +132,13 @@
               "projects/admin/src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/mdbootstrap/css/mdb.min.css",
-              "node_modules/mdb-ui-kit/css/mdb.min.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
             ],
 
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/mdb-ui-kit/js/mdb.es.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
@@ -204,17 +195,13 @@
               "projects/admin/src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
-              "node_modules/mdbootstrap/css/mdb.min.css",
-              "node_modules/mdb-ui-kit/css/mdb.min.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
             ],
 
             "scripts": [
-              "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/mdb-ui-kit/js/mdb.es.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           }
         }

@@ -1,8 +1,8 @@
-.task-container {
-  background-color: #ffffff; /* Light gray background */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
+/* .task-container {
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
 
 .task-container table {
   table-layout: fixed;
@@ -15,4 +15,21 @@ mat-header-cell, mat-cell {
 
 .mat-column-description, .mat-column-deadline {
   width: 25%; /* Adjust as needed */
+}
+.btn-label {
+	position: relative;
+	left: -12px;
+	display: inline-block;
+	padding: 6px 12px;
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 3px 0 0 3px;
+}
+ 
+.btn-labeled {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+ 
+.btn {
+	margin-bottom: 10px;
 }

@@ -21,7 +21,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/user/public"
+                "input": "projects/user/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "projects/user/src",
+                "output": "."
               }
             ],
             "styles": [
@@ -30,7 +36,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
+              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css",
+              "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
             ],
 
             "scripts": [
@@ -88,7 +95,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/user/public"
+                "input": "projects/user/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "projects/user/src",
+                "output": "."
               }
             ],
             "styles": [
@@ -97,7 +110,8 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
+              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css",
+              "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
@@ -125,7 +139,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/admin/public"
+                "input": "projects/admin/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "projects/admin/src",
+                "output": "."
               }
             ],
             "styles": [
@@ -134,11 +154,13 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
+              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css",
+              "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
             ],
 
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/mdb-ui-kit/js/mdb.es.min.js"
             ]
           },
           "configurations": {
@@ -188,7 +210,13 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/admin/public"
+                "input": "projects/admin/src/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "projects/admin/src",
+                "output": "."
               }
             ],
             "styles": [
@@ -197,11 +225,13 @@
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css"
+              "node_modules/ngx-spinner/animations/line-scale-pulse-out-rapid.css",
+              "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
             ],
 
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "node_modules/mdb-ui-kit/js/mdb.es.min.js"
             ]
           }
         }

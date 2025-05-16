@@ -6,7 +6,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
   selector: 'app-manage-users',
-  imports: [MatButtonModule, MatTableModule, DatePipe],
+  imports: [MatButtonModule, MatTableModule],
   templateUrl: './manage-users.component.html',
   styleUrl: './manage-users.component.css',
   providers: [DatePipe],

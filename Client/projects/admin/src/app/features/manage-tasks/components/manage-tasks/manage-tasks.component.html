@@ -1,58 +1,107 @@
 <div class="task-container p-4">
-<div class="d-flex justify-content-end">
-  <button (click)="addTask()" type="button" class="btn btn-primary" aria-label="Primary Action Button">
-    Add Task
-  </button>
-</div>
-<table
-  mat-table
-  [dataSource]="tasks"
-  class="mat-elevation-z8"
-  style="table-layout: fixed; width: 100%; max-width: 1200px;"
-  aria-label="Task Table"
->
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> No. </th>
-    <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
-  </ng-container>
+  <!-- Add Task button aligned right -->
+  <div  class="d-flex justify-content-end mb-3">
+    <button (click)="addTask()"  type="button" class="btn btn-labeled btn-warning">
+      <span class="btn-label"><i class="bi bi-plus-lg"></i></span>Add Task
+    </button>
+  </div>
 
-  <!-- Task Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Task Name </th>
-    <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
-  </ng-container>
+  <!-- Task Table -->
+  <table
+    mat-table
+    [dataSource]="tasks"
+    class="mat-elevation-z8"
+    style="table-layout: fixed; width: 100%; max-width: 1200px"
+    aria-label="Task Table"
+  >
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        No.
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+    </ng-container>
 
-  <!-- User Column -->
-  <ng-container matColumnDef="user">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> User </th>
-    <td mat-cell *matCellDef="let element"> {{ element.username }} </td>
-  </ng-container>
+    <!-- Task Name Column -->
+    <ng-container matColumnDef="name">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        Task Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
 
-  <!-- Deadline Column -->
-  <ng-container matColumnDef="deadline">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Deadline </th>
-    <td mat-cell *matCellDef="let element"> {{ element.deadline | date: 'short' }} </td>
-  </ng-container>
+    <!-- User Column -->
+    <ng-container matColumnDef="user">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        User
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+    </ng-container>
 
-  <!-- Description Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Description </th>
-    <td mat-cell *matCellDef="let element"> {{ element.description }} </td>
-  </ng-container>
-  <ng-container matColumnDef="status">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Status </th>
-    <td mat-cell *matCellDef="let element">{{element.status}} </td>
-  </ng-container>
-  <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Action </th>
-    <td mat-cell *matCellDef="let element"> Update / Delete  </td>
-  </ng-container>
+    <!-- Deadline Column -->
+    <ng-container matColumnDef="deadline">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        Deadline
+      </th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.deadline | date : "short" }}
+      </td>
+    </ng-container>
 
-  <!-- Table Rows -->
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        Description
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
 
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        Status
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
 
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        style="background-color: #000000; color: white"
+      >
+        Action
+      </th>
+      <td mat-cell *matCellDef="let element">Update / Delete</td>
+    </ng-container>
+
+    <!-- Table Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

@@ -20,6 +20,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  logoImage = 'assets/images/Logo.png';
+  loginImage = 'assets/images/login-image.png';
   loginForm!: FormGroup;
 
   constructor(

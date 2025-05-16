@@ -8,31 +8,31 @@
       aria-label="Task Table"
       >
       <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> No. </th>
+          <th mat-header-cell *matHeaderCellDef style="background-color: #000000; color: white;"> No. </th>
           <td mat-cell *matCellDef="let element; let i = index"> {{ i + 1 }} </td>
         </ng-container>
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Name </th>
+        <th mat-header-cell *matHeaderCellDef style="background-color: #000000; color: white;"> Name </th>
         <td mat-cell *matCellDef="let element; let i = index"> {{element.username}} </td>
     </ng-container>
     
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Email </th>
+        <th mat-header-cell *matHeaderCellDef style="background-color: #000000; color: white;"> Email </th>
         <td mat-cell *matCellDef="let element"> {{ element.email }} </td>
       </ng-container>
     
       <ng-container matColumnDef="assigned task">
-        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Assigned Tasks</th>
+        <th mat-header-cell *matHeaderCellDef style="background-color: #000000; color: white;"> Assigned Tasks</th>
         <td mat-cell *matCellDef="let element"> {{ element.assignedTasks }} </td>
       </ng-container>
     
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Status </th>
+        <th mat-header-cell *matHeaderCellDef style="background-color: #000000; color: white;"> Status </th>
         <td mat-cell *matCellDef="let element"> Active  </td>
       </ng-container>
     
       <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef style="background-color: #0d6efd; color: white;"> Action </th>
+        <th mat-header-cell *matHeaderCellDef style="background-color: #000000; color: white;"> Action </th>
         <td mat-cell *matCellDef="let element"> In-Active / delete  </td>
       </ng-container>
     
@@ -42,4 +42,5 @@
     
     
     </div>
+
     

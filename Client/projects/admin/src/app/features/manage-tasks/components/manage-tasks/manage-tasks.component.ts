@@ -6,10 +6,11 @@ import { TaskFormComponent } from '../task-form/task-form.component';
 import { ManageTaskService } from '../../services/manage-task.service';
 import { DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-manage-tasks',
-  imports: [MatTableModule, MatButtonModule, DatePipe],
+  imports: [MatTableModule, MatButtonModule, DatePipe , MatIconModule],
   templateUrl: './manage-tasks.component.html',
   styleUrls: ['./manage-tasks.component.css'],
   providers: [DatePipe],

@@ -1,6 +1,56 @@
 .link-active {
-    color: black !important;  /* Set the text color to black */
-    font-weight: bold !important;  /* Make the font bold */
-    font-size: 16px !important;  /* Increase the font size */
-  }
-  
+  color: black !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+}
+/* Color of the links BEFORE scroll */
+.navbar-scroll .nav-link,
+.navbar-scroll .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #262626;
+}
+
+/* Color of the navbar BEFORE scroll */
+.navbar-scroll {
+  background-color: #ffc017;
+  padding-top: 0.8rem; /* Slightly bigger padding BEFORE scroll */
+  padding-bottom: 0.8rem;
+  transition: background-color 0.5s ease, padding 0.5s ease;
+}
+
+/* Color of the links AFTER scroll */
+.navbar-scrolled .nav-link,
+.navbar-scrolled .navbar-toggler-icon,
+.navbar-scroll .navbar-brand {
+  color: #262626;
+}
+
+/* Color of the navbar AFTER scroll */
+.navbar-scrolled {
+  background-color: #fff;
+  padding-top: 0.6rem; /* Slightly smaller padding AFTER scroll */
+  padding-bottom: 0.6rem;
+  transition: background-color 0.5s ease, padding 0.5s ease;
+}
+
+/* Navbar brand size and smooth height transition */
+.navbar-brand {
+  height: 3.2rem; /* Slightly taller BEFORE scroll */
+  font-size: unset;
+  transition: height 0.5s ease;
+}
+
+/* Navbar brand slightly smaller AFTER scroll */
+.navbar-scrolled .navbar-brand {
+  height: 2.9rem; /* Slightly smaller AFTER scroll */
+}
+
+/* Optional: adjust button size smoothly if needed */
+.navbar .btn {
+  transition: padding 0.5s ease, font-size 0.5s ease;
+}
+
+.navbar-scrolled .btn {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.9rem;
+}

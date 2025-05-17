@@ -13,5 +13,6 @@ import {MatButtonModule} from '@angular/material/button';
 
 })
 export class MyTasksComponent {
-
+      logoImage = 'assets/images/Logo.png';
 }
+

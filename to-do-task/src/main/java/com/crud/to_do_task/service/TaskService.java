@@ -43,6 +43,17 @@ public class TaskService {
 
      }
 
+    public List<TaskRequest> getTasksByUserId(Long userId) {
+        return taskRepository.findByUserId(userId).stream().map(task -> new TaskRequest(
+                task.getId(),
+                task.getName(),
+                task.getUser().getId(),
+                task.getUser().getUsername(),
+                task.getDeadline(),
+                task.getDescription(),
+                task.getStatus())).collect(Collectors.toList());
+
+    }
 }
 
 

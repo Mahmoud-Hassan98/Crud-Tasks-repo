@@ -1,10 +1,13 @@
 package com.crud.to_do_task.controller;
 
+import com.crud.to_do_task.dto.TaskRequest;
 import com.crud.to_do_task.dto.UserRequest;
+import com.crud.to_do_task.service.TaskService;
 import com.crud.to_do_task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -13,12 +16,25 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private TaskService taskService;
 
     @GetMapping("/get-users")
     public ResponseEntity<List<UserRequest>> getUsers() {
         List<UserRequest> response = userService.getUsers();
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{userId}/tasks")
+    public  ResponseEntity<List<TaskRequest>> getUserTasks(@PathVariable Long userId) {
+        System.out.println(userId);
+         List<TaskRequest> response = taskService.getTasksByUserId(userId) ;
+        return ResponseEntity.ok(response);
+
+    }
+
+
+
 }
 
 

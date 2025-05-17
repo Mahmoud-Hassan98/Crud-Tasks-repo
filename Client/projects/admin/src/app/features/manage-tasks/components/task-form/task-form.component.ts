@@ -68,15 +68,14 @@ export class TaskFormComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<TaskFormComponent>,
     private fb: FormBuilder,
-    private ManageTaskService: ManageTaskService
-    , private ManageUsersService :ManageUsersService
+    private ManageTaskService: ManageTaskService,
+    private ManageUsersService: ManageUsersService
   ) {}
   ngOnInit(): void {
     this.ManageUsersService.getAllUsers().subscribe(
       (data) => {
         this.users = data;
-        console.log( this.users);
-        
+        console.log(this.users);
       },
       (error) => {
         console.error('Error fetching users', error);
@@ -105,15 +104,15 @@ export class TaskFormComponent implements OnInit {
       task.deadline = formattedDeadline;
       console.log(task);
 
-      this.ManageTaskService.addTask(task).subscribe(
-        (response) => {
+      this.ManageTaskService.addTask(task).subscribe({
+        next: (response) => {
           this.dialogRef.close({ success: true, task: response });
         },
-        (error) => {
+        error: (error) => {
           console.error('Error adding task:', error);
           alert('An error occurred while saving the task.');
-        }
-      );
+        },
+      });
     } else {
       alert('Please fill in all the required fields');
     }

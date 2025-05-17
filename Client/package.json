@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
     "jquery": "^3.7.1",
+    "jwt-decode": "^4.0.0",
     "mdb-ui-kit": "^9.0.0",
     "mdbootstrap": "^4.20.0",
     "ngx-spinner": "^17.0.0",

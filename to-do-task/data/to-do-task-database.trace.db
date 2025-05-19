@@ -7,3 +7,14 @@ select u1_0.id from users u1_0 where u1_0.email=? fetch first ? rows only [42104
 2025-05-14 05:48:28.748876+03:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "Delete [*]* FROM TASKS"; expected "identifier"; SQL statement:
 Delete * FROM TASKS [42001-232]
+2025-05-19 06:51:26.164413+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERSTASKS" not found; SQL statement:
+DELETE FROM UsersTASKS TASKS [42102-232]
+2025-05-19 06:52:08.695975+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO users (email[*].username, password, role)\000d\000aVALUES (admin@gmail.com, 'admin', '$2a$12$ghCmaYZJ4c2W03od5GrHVudizOE0zlX14IuugjHrmKCy8x8bGNzqm', 'ADMIN')"; expected ",, )"; SQL statement:
+INSERT INTO users (email.username, password, role)
+VALUES (admin@gmail.com, 'admin', '$2a$12$ghCmaYZJ4c2W03od5GrHVudizOE0zlX14IuugjHrmKCy8x8bGNzqm', 'ADMIN') [42001-232]
+2025-05-19 06:52:24.707432+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO USERS(email[*].username, password, role)\000d\000aVALUES (admin@gmail.com, 'admin', '$2a$12$ghCmaYZJ4c2W03od5GrHVudizOE0zlX14IuugjHrmKCy8x8bGNzqm', 'ADMIN')"; expected ",, )"; SQL statement:
+INSERT INTO USERS(email.username, password, role)
+VALUES (admin@gmail.com, 'admin', '$2a$12$ghCmaYZJ4c2W03od5GrHVudizOE0zlX14IuugjHrmKCy8x8bGNzqm', 'ADMIN') [42001-232]

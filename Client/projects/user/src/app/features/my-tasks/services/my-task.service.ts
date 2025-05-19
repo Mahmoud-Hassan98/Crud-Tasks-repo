@@ -9,7 +9,7 @@ export class MyTaskService {
   getUserTasks(): Observable<any[]> {
     const userId = this.getUserId();
     
-    return this.http.get<any[]>(`http://localhost:8080/user/${userId}/tasks`);
+    return this.http.get<any[]>("http://localhost:8080/user/tasks");
   }
   constructor(private http: HttpClient) {}
   getUserId(): any {

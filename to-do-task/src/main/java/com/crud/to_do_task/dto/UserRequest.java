@@ -9,8 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class UserRequest {
-    Long id ;
-    String username;
-    String email ;
+   private Long id ;
+   private String username;
+     private String email ;
     private Long assignedTasks;
+
+
 }

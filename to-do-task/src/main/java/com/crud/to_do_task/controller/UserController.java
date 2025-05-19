@@ -6,6 +6,7 @@ import com.crud.to_do_task.service.TaskService;
 import com.crud.to_do_task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,10 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/{userId}/tasks")
-    public  ResponseEntity<List<TaskRequest>> getUserTasks(@PathVariable Long userId) {
-        System.out.println(userId);
+    @GetMapping("/tasks")
+    public  ResponseEntity<List<TaskRequest>> getUserTasks() {
+        String userIdStr = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = Long.parseLong(userIdStr); // convert from String to Long
          List<TaskRequest> response = taskService.getTasksByUserId(userId) ;
         return ResponseEntity.ok(response);
 

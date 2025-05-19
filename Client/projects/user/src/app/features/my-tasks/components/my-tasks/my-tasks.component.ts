@@ -36,7 +36,6 @@ export class MyTasksComponent implements OnInit {
       },
       error: (err) => {
         console.error('Failed to load tasks:', err);
-        alert('Could not load tasks. Please try again later.');
       },
     });
   }

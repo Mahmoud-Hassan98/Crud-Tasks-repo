@@ -21,10 +21,10 @@ public class JwtService {
     }
 
     // Generate JWT with id, username, email
-    public String generateToken(Long id, String username, String email) {
+    public String generateToken(Long id, String username, String email , String role ) {
         return Jwts.builder()
                 .setSubject(String.valueOf(id))  // Set the user ID as the subject (ensure it's unique)
-                .claim("username", username)     // Add username as an additional claim
+                .claim("username", username).claim("role" ,role)     // Add username as an additional claim
                 .claim("email", email)           // Add email as an additional claim
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000)) // 1 day

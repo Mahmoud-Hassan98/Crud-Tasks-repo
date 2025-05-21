@@ -8,15 +8,12 @@ import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
 
 
 export class AuthService {
-  url : string = "loaclhost:8080/auth"
   private readonly tokenKey = 'token'
   public  loggedIn$ = new BehaviorSubject<boolean>(this.hasToken())
 
   constructor(private http : HttpClient) { 
   }
  
-  
-
   signUp(user: any): Observable<any> {
     return this.http.post<{ token: string }>("http://localhost:8080/auth/register", user).pipe(
       tap(response =>{
@@ -32,7 +29,6 @@ export class AuthService {
       })
     );
   }
-  
  login(user : any ) : Observable<any>{ 
   
   return this.http.post<{token : string}>("http://localhost:8080/auth/login" , user).pipe(

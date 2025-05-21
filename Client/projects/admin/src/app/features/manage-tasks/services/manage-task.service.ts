@@ -7,7 +7,7 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
 })
 export class ManageTaskService {
  getTasks(): Observable<any[]> {
-  return this.http.get<any[]>("http://localhost:8080/task/get-tasks").pipe(
+  return this.http.get<any[]>("http://localhost:8080/admin/get-tasks").pipe(
     tap(response => {
     }),
     catchError((error) => {
@@ -19,7 +19,7 @@ export class ManageTaskService {
 addTask(task: any): Observable<any> {
   console.log(task);
   
-  return this.http.post<any>('http://localhost:8080/task/add-task', task).pipe(
+  return this.http.post<any>('http://localhost:8080/admin/add-task', task).pipe(
     tap({
       next: (response) => {
       },
@@ -33,7 +33,7 @@ addTask(task: any): Observable<any> {
 
   }
   getAllUsers(): Observable<any[]> {
-   return this.http.get<any[]>("http://localhost:8080/user/get-users")
+   return this.http.get<any[]>("http://localhost:8080/admin/get-users")
 
   }
   constructor(private http : HttpClient) {}

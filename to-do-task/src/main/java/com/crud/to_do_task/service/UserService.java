@@ -19,7 +19,7 @@ public class UserService {
     TaskRepository taskRepository ;
 
      public List<UserRequest> getUsers (){
-      return userRepository.findAll().stream().map(user ->  new UserRequest(user.getId()
+      return userRepository.findByRoleNot("ROLE_ADMIN").stream().map(user ->  new UserRequest(user.getId()
               , user.getUsername()
               , user.getEmail(),
               taskRepository.countByUserId(user.getId()))).collect(Collectors.toList());

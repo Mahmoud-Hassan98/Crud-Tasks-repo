@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -34,13 +35,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .cors(Customizer.withDefaults())
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers(
-                                "/h2-console/**",
-                                "/auth/**",
-                                "/user/register",
-                                "/user/login"
-                        )
+                .csrf(AbstractHttpConfigurer::disable
                 )           .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(authenticationEntryPoint)      // for 401
                         .accessDeniedHandler(accessDeniedHandler)                // for 403
@@ -53,7 +48,9 @@ public class SecurityConfig {
                                 "/user/register",
                                 "/user/login"
                         ).permitAll()
-                        .anyRequest().authenticated()  // ⛔ everything else requires auth, including /user/tasks
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/tasks").hasRole("USER")
+                        .anyRequest().authenticated()
                 )
                 .headers(headers -> headers
                         .frameOptions(frame -> frame.sameOrigin())

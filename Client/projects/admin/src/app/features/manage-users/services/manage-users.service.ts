@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ManageUsersService {
 
   getAllUsers(): Observable<any[]> {
-   return this.http.get<any[]>("http://localhost:8080/user/get-users")
+   return this.http.get<any[]>("http://localhost:8080/admin/get-users")
 
   }
   constructor(private http : HttpClient) { 

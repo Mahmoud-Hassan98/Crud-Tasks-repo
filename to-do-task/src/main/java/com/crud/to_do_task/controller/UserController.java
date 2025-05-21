@@ -20,12 +20,6 @@ public class UserController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/get-users")
-    public ResponseEntity<List<UserRequest>> getUsers() {
-        List<UserRequest> response = userService.getUsers();
-        return ResponseEntity.ok(response);
-    }
-
     @GetMapping("/tasks")
     public  ResponseEntity<List<TaskRequest>> getUserTasks() {
         String userIdStr = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

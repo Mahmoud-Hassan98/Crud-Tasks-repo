@@ -40,8 +40,6 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    console.log(this.loginForm.value);
-
     this.AuthService.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.spinner.show();
@@ -49,8 +47,6 @@ export class LoginComponent {
           this.spinner.hide();
           this.router.navigate(['/my-tasks']);
         }, 2000);
-
-        console.log(response);
       },
       error: (err) => {
         setTimeout(() => {

@@ -35,19 +35,15 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
 
-        System.out.println(2222222);
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            System.out.println(666666);
             filterChain.doFilter(request, response);
             return;
         }
-        System.out.println(333333);
 
         final String token = authHeader.substring(7);
 
         try {
-            System.out.println(555555);
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(secretKey)
                     .build()
@@ -56,14 +52,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             String userId = claims.getSubject();
             String role = claims.get("role", String.class);
-            System.out.println(role);
-            System.out.println(userId);
-            System.out.println("Existing auth: " + SecurityContextHolder.getContext().getAuthentication());
-
             if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
-                System.out.println(authority);
-                System.out.println("Existing auth: " + SecurityContextHolder.getContext().getAuthentication());
 
 
 

@@ -22,32 +22,29 @@ public class AuthService {
     JwtService jwtService;
 
     public AuthResponse register(RegisterRequest request) {
-        if(userRepository.existsByEmail(request.getEmail())) {
-            throw  new RuntimeException("email already exists") ;
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("email already exists");
         }
-         User user = new User();
-          user.setEmail(request.getEmail());
-          user.setPassword(passwordEncoder.encode(request.getPassword()));
-          user.setUsername(request.getUsername());
-          user.setRole("ROLE_USER");
+        User user = new User();
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setUsername(request.getUsername());
+        user.setRole("ROLE_USER");
 
 
-
-          userRepository.save(user) ;
-            String token = jwtService.generateToken(user.getId() , user.getUsername() , user.getEmail() , user.getRole());
-        return     new AuthResponse(token);
+        userRepository.save(user);
+        String token = jwtService.generateToken(user.getId(), user.getUsername(), user.getEmail(), user.getRole());
+        return new AuthResponse(token);
     }
+
     public AuthResponse login(LoginRequest request) {
 
-       User user = userRepository.findByEmail(request.getEmail()).orElseThrow(()-> new RuntimeException("user not found"));
-        System.out.println(passwordEncoder.matches(request.getPassword() , user.getPassword()));
-       if(!passwordEncoder.matches(request.getPassword() , user.getPassword())) {
-         throw  new RuntimeException("Invalid credentials");
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new RuntimeException("user not found"));
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid credentials");
 
-       }
-         String token = jwtService.generateToken(user.getId() , user.getUsername() , user.getEmail() , user.getRole());
-        System.out.println(token);
-        System.out.println(new AuthResponse(token));
+        }
+        String token = jwtService.generateToken(user.getId(), user.getUsername(), user.getEmail(), user.getRole());
         return new AuthResponse(token);
 
     }

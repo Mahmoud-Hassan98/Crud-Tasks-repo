@@ -45,12 +45,9 @@ export class SignUpComponent {
   }
 
   onSubmit(): void {
-    console.log(this.signUpForm.value);
-
     this.AuthService.signUp(this.signUpForm.value).subscribe({
       next: (response) => {
         this.spinner.show();
-        console.log('Signup successful:', response);
         setTimeout(() => {
           this.spinner.hide();
           this.router.navigate(['/my-tasks']);

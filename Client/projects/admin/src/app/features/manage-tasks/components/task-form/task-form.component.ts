@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -67,21 +67,12 @@ export class TaskFormComponent implements OnInit {
   taskForm!: FormGroup;
   constructor(
     private dialogRef: MatDialogRef<TaskFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { task: any },
     private fb: FormBuilder,
     private ManageTaskService: ManageTaskService,
     private ManageUsersService: ManageUsersService
   ) {}
   ngOnInit(): void {
-    this.ManageUsersService.getAllUsers().subscribe(
-      (data) => {
-        this.users = data;
-        console.log(this.users);
-      },
-      (error) => {
-        console.error('Error fetching users', error);
-      }
-    );
-
     this.taskForm = this.fb.group({
       name: ['', Validators.required],
       userId: ['', Validators.required],
@@ -89,6 +80,21 @@ export class TaskFormComponent implements OnInit {
       description: [''],
       status: 'In-Progress',
     });
+
+    this.ManageUsersService.getAllUsers().subscribe(
+      (data) => {
+        this.users = data;
+      },
+      (error) => {
+        console.error('Error fetching users', error);
+      }
+    );
+    if (this.data?.task) {
+      this.taskForm.patchValue({
+        ...this.data.task,
+        deadline: new Date(this.data.task.deadline),
+      });
+    }
   }
   onClose(): void {
     this.dialogRef.close();
@@ -102,8 +108,19 @@ export class TaskFormComponent implements OnInit {
         'en-US'
       );
       task.deadline = formattedDeadline;
-      console.log(task);
-
+      if (this.data?.task) {
+        const updatedTask = { ...this.data.task, ...task };
+        this.ManageTaskService.updateTask(updatedTask, this.data.task.id).subscribe({
+          next: (response) => {
+            this.dialogRef.close({ success: true, task: response });
+          },
+          error: (err) => {
+            console.error(err, 'An error occurred while editing the task');
+            alert('An error occurred while saving the task.');
+          },
+        });
+        return;
+      }
       this.ManageTaskService.addTask(task).subscribe({
         next: (response) => {
           this.dialogRef.close({ success: true, task: response });

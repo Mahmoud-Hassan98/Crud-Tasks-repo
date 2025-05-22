@@ -32,7 +32,6 @@ export class MyTasksComponent implements OnInit {
     this.myTaskService.getUserTasks().subscribe({
       next: (value) => {
         this.tasks = value
-        console.log('Tasks:', this.tasks);
       },
       error: (err) => {
         console.error('Failed to load tasks:', err);

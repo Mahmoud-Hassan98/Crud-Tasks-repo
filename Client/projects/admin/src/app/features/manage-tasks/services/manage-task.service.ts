@@ -16,9 +16,7 @@ export class ManageTaskService {
     })
   );
 }
-addTask(task: any): Observable<any> {
-  console.log(task);
-  
+addTask(task: any): Observable<any> {  
   return this.http.post<any>('http://localhost:8080/admin/add-task', task).pipe(
     tap({
       next: (response) => {
@@ -29,12 +27,30 @@ addTask(task: any): Observable<any> {
     })
   );
 }
-  removeTask(taskIndex: number): void {
 
-  }
   getAllUsers(): Observable<any[]> {
    return this.http.get<any[]>("http://localhost:8080/admin/get-users")
 
+  }
+
+public removeTask(taskId: number): Observable<any> {
+  if (!taskId) {
+    console.error('Invalid task ID:', taskId);
+    return throwError(() => new Error('Invalid task ID'));
+  }
+   
+  const url = `http://localhost:8080/admin/${taskId}/remove-task`;
+  return this.http.delete<any>(url).pipe(
+    tap(() => console.log(`Task ${taskId} deleted successfully`)),
+    catchError(error => {
+      console.error('Error deleting task:', error);
+      return throwError(() => error);
+    })
+  );
+}
+
+  updateTask(task : any , taskId : number) : Observable<any> {
+    return this.http.put(`http://localhost:8080/admin/${taskId}/update-task`, task) 
   }
   constructor(private http : HttpClient) {}
 }

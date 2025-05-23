@@ -5,6 +5,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MyTaskService } from '../../services/my-task.service';
 import { CommonModule } from '@angular/common';
+import { WebSocketService } from '../../../../shared/services/websocket.service';
 
 @Component({
   selector: 'app-my-tasks',
@@ -21,17 +22,24 @@ import { CommonModule } from '@angular/common';
 })
 export class MyTasksComponent implements OnInit {
   tasks: any[] = [];
-  constructor(private myTaskService: MyTaskService) {}
+  constructor(
+    private myTaskService: MyTaskService,
+    private wsService: WebSocketService
+  ) {}
   logoImage = 'assets/images/Logo.png';
 
   ngOnInit(): void {
     this.loadUserTasks();
+    this.wsService.subscribeToUserTasks((newTask) => {
+      this.tasks.push(newTask);
+      this.tasks = [...this.tasks];
+    });
   }
 
   loadUserTasks(): void {
     this.myTaskService.getUserTasks().subscribe({
       next: (value) => {
-        this.tasks = value
+        this.tasks = value;
       },
       error: (err) => {
         console.error('Failed to load tasks:', err);

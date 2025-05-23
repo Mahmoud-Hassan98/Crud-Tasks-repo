@@ -46,7 +46,8 @@ public class SecurityConfig {
                                 "/h2-console/**",
                                 "/auth/**",
                                 "/user/register",
-                                "/user/login"
+                                "/user/login",
+                                "/ws/**"
                         ).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/tasks").hasRole("USER")

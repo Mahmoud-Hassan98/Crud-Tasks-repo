@@ -66,6 +66,8 @@ export class MyTasksComponent implements OnInit {
     });
   }
   completeTask(taskId: number) {
+    console.log("test");
+    
     this.myTaskService.completeTask(taskId).subscribe({
       next: (completedTask) => {
         this.toaster.success('success', 'Task completed successfully!');

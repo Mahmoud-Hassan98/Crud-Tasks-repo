@@ -1,10 +1,11 @@
 <h2 mat-dialog-title style="font-weight: bold">Add Task</h2>
 <mat-dialog-content>
-  <form [formGroup]="taskForm" >
+  <form [formGroup]="taskForm">
     <mat-form-field appearance="fill">
       <mat-label>Task Name</mat-label>
       <input
-        formControlName = "name" required
+        formControlName="name"
+        required
         name="name"
         matInput
         placeholder="Enter task name"
@@ -13,19 +14,21 @@
 
     <mat-form-field appearance="fill">
       <mat-label>User</mat-label>
-      <mat-select formControlName = "userId" required>
-        <mat-option *ngFor="let user of users" [value]="user.id">{{user.username}}</mat-option>
+      <mat-select formControlName="userId" required>
+        <mat-option *ngFor="let user of users" [value]="user.id">{{
+          user.username
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Deadline Date</mat-label>
       <input
-        formControlName = "deadline" required
+        formControlName="deadline"
+        required
         matInput
         [matDatepicker]="picker"
         name="deadline"
-        
       />
       <mat-datepicker-toggle
         matIconSuffix
@@ -37,12 +40,29 @@
     <mat-form-field>
       <mat-label>Textarea</mat-label>
       <textarea
-       formControlName = "description"
+        formControlName="description"
         name="description"
         matInput
         rows="5"
       ></textarea>
     </mat-form-field>
+
+    <div class="w-100">
+      <label for="fileInput" style="font-weight: 500">Attach Image</label>
+      <input
+        id="fileInput"
+        type="file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
+
+    <img
+      *ngIf="previewUrl"
+      [src]="previewUrl"
+      alt="Image preview"
+      style="max-height: 150px; display: block; margin-top: 10px"
+    />
   </form>
 </mat-dialog-content>
 

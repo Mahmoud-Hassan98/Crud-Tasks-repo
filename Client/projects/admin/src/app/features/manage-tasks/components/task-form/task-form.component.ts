@@ -65,6 +65,8 @@ export interface Task {
 export class TaskFormComponent implements OnInit {
   users!: any[];
   taskForm!: FormGroup;
+  previewUrl: string | ArrayBuffer | null = null;
+  selectedFile: File | null = null;
   constructor(
     private dialogRef: MatDialogRef<TaskFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { task: any },
@@ -79,6 +81,7 @@ export class TaskFormComponent implements OnInit {
       deadline: [null, Validators.required],
       description: [''],
       status: 'In-Progress',
+      taskImage: [null],
     });
 
     this.ManageUsersService.getAllUsers().subscribe(
@@ -108,9 +111,20 @@ export class TaskFormComponent implements OnInit {
         'en-US'
       );
       task.deadline = formattedDeadline;
+      const formData = new FormData();
+      formData.append(
+        'task',
+        new Blob([JSON.stringify(task)], { type: 'application/json' })
+      );
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile);
+      }
       if (this.data?.task) {
         const updatedTask = { ...this.data.task, ...task };
-        this.ManageTaskService.updateTask(updatedTask, this.data.task.id).subscribe({
+        this.ManageTaskService.updateTask(
+          formData,
+          this.data.task.id
+        ).subscribe({
           next: (response) => {
             this.dialogRef.close({ success: true, task: response });
           },
@@ -121,7 +135,7 @@ export class TaskFormComponent implements OnInit {
         });
         return;
       }
-      this.ManageTaskService.addTask(task).subscribe({
+      this.ManageTaskService.addTask(formData).subscribe({
         next: (response) => {
           this.dialogRef.close({ success: true, task: response });
         },
@@ -132,6 +146,19 @@ export class TaskFormComponent implements OnInit {
       });
     } else {
       alert('Please fill in all the required fields');
+    }
+  }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      this.selectedFile = input.files[0];
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
     }
   }
 }

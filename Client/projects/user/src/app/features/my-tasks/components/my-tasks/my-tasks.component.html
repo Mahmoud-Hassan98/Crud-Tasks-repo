@@ -1,3 +1,13 @@
+<div class="container my-3">
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by Status</mat-label>
+    <mat-select [(ngModel)]="selectedStatus" (selectionChange)="loadUserTasks()">
+      <mat-option value="">All</mat-option>
+      <mat-option value="In-Progress">In-Progress</mat-option>
+      <mat-option value="Completed">Completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div class="container my-5">
   <div class="row g-4">
     <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let task of tasks">
@@ -9,7 +19,7 @@
         />
         <div class="card-body d-flex flex-column">
           <h5 class="card-title">{{ task.name || "No Title" }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
+          <h6 class="card-subtitle mb-2 text-secondary">
             Deadline: {{ task.deadline || "N/A" }}
           </h6>
           <p class="card-text">
@@ -20,7 +30,7 @@
               <i class="fas fa-info-circle me-1"></i> Details
             </button>
 
-            <button class="btn btn-success btn-sm">
+            <button *ngIf="task.status == 'In-Progress'" (click)="completeTask(task.id)" class="btn btn-success btn-sm">
               <i class="fas fa-check me-1"></i> Complete
             </button>
           </div>

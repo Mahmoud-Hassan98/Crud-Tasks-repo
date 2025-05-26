@@ -16,8 +16,8 @@ export class ManageTaskService {
     })
   );
 }
-addTask(task: any): Observable<any> {  
-  return this.http.post<any>('http://localhost:8080/admin/add-task', task).pipe(
+addTask(formData: FormData): Observable<any> {  
+  return this.http.post<any>('http://localhost:8080/admin/add-task', formData).pipe(
     tap({
       next: (response) => {
       },
@@ -49,8 +49,8 @@ public removeTask(taskId: number): Observable<any> {
   );
 }
 
-  updateTask(task : any , taskId : number) : Observable<any> {
-    return this.http.put(`http://localhost:8080/admin/${taskId}/update-task`, task) 
+  updateTask(formData : FormData , taskId : number) : Observable<any> {
+    return this.http.put(`http://localhost:8080/admin/${taskId}/update-task`, formData) 
   }
   constructor(private http : HttpClient) {}
 }

@@ -9,6 +9,7 @@ import {
   provideAnimations,
 } from '@angular/platform-browser/animations';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +19,10 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimations(),
     importProvidersFrom(BrowserAnimationsModule),
+        provideToastr({
+          timeOut: 3000,
+          positionClass: 'toast-top-right',
+          preventDuplicates: true,
+        }),
   ],
 };

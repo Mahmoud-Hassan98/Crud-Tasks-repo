@@ -55,8 +55,18 @@ public class TaskService {
 
     }
 
-    public List<TaskRequest> getTasksByUserId(Long userId) {
-        return taskRepository.findByUserId(userId).stream().map(task -> new TaskRequest(
+    public List<TaskRequest> getTasksByUserId(Long userId , String status) {
+        List<Task> tasks;
+
+         if(status !=null && !status.isEmpty()) {
+          tasks = taskRepository.findByUserIdAndStatus(userId , status);
+
+         } else {
+             tasks = taskRepository.findByUserId(userId) ;
+         }
+
+
+        return tasks.stream().map(task -> new TaskRequest(
                 task.getId(),
                 task.getName(),
                 task.getUser().getId(),
@@ -89,6 +99,13 @@ public class TaskService {
 
         taskRepository.save(existingTask);
         return taskRequest;
+
+    }
+    public   TaskRequest completeTask(Long taskId) {
+        Task task = taskRepository.findById(taskId).orElseThrow(()->new EntityNotFoundException("Task not found "));
+        task.setStatus("Completed");
+        taskRepository.save(task);
+        return new TaskRequest(task.getId() , task.getName() , task.getUser().getId() , task.getUser().getUsername() , task.getDeadline() , task.getDescription() , task.getStatus() );
 
     }
 

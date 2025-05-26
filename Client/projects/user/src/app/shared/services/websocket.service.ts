@@ -11,14 +11,15 @@ interface JwtPayload {
 export class WebSocketService {
   private stompClient!: Client;
   private userId!: number;
+  
 
   constructor() {
+
     const token = localStorage.getItem('token');
 
     if (token) {
       const decoded = jwtDecode<JwtPayload>(token);  
       this.userId = Number(decoded.sub);
-      console.log(this.userId);
       
     }
 

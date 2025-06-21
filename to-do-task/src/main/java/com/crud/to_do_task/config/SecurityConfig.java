@@ -47,7 +47,8 @@ public class SecurityConfig {
                                 "/auth/**",
                                 "/user/register",
                                 "/user/login",
-                                "/ws/**"
+                                "/ws/**",
+                                "/images/**"
                         ).permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/tasks").hasRole("USER")

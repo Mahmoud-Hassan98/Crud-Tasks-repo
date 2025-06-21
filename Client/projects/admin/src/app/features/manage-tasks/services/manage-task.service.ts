@@ -17,6 +17,8 @@ export class ManageTaskService {
   );
 }
 addTask(formData: FormData): Observable<any> {  
+  console.log(formData);
+  
   return this.http.post<any>('http://localhost:8080/admin/add-task', formData).pipe(
     tap({
       next: (response) => {

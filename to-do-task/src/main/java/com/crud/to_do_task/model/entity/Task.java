@@ -25,4 +25,6 @@ public class Task {
     private LocalDate deadline;
     private String description;
     private String  status;
+    @Lob
+    private String imageUrl;
 }

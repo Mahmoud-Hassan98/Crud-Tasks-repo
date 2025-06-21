@@ -214,3 +214,6 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/mahmo/D
 	at org.h2.mvstore.SingleFileStore.open(SingleFileStore.java:81)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:286)
 	... 57 more
+2025-06-21 06:31:13.023110+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]*FROM TABLE TASKS"; expected "identifier"; SQL statement:
+DELETE *FROM TABLE TASKS [42001-232]

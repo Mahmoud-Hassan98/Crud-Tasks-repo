@@ -19,4 +19,7 @@ public class TaskRequest {
     private LocalDate deadline;
     private  String description ;
     private String  status;
+    private String imageUrl;
+
+
 }

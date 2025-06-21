@@ -86,4 +86,7 @@ export class MyTasksComponent implements OnInit {
       },
     });
   }
+  getImageUrl(task : any) : string {
+   return task.imageUrl ? 'http://localhost:8080' + task.imageUrl : this.logoImage
+  } 
 }

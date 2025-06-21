@@ -4,7 +4,7 @@
   appScrollNavbar
 >
   <div class="container">
-    <a class="navbar-brand" href="#!">
+    <a class="navbar-brand"    routerLink="/my-tasks">
       <img
         [src]="logoImage"
         alt="Todo Logo"
@@ -33,12 +33,12 @@
             >My Tasks</a
           >
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#!">Membership</a>
-        </li>
-        <li class="nav-item">
+        </li> -->
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#!">Write</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a
             *ngIf="!isLoggedIn"

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,9 +28,19 @@ public class AdminController {
     UserService userService ;
 
     @PostMapping("/add-task")
-    public ResponseEntity<TaskRequest> createTask(@RequestBody TaskRequest task){
+    public ResponseEntity<TaskRequest> createTask(
+            @RequestPart("task") TaskRequest task,
+            @RequestPart(value = "image", required = false) MultipartFile image
+    )
+    {
+        if (image != null) {
+            System.out.println("Received image: " + image.getOriginalFilename());
+            // Handle saving the image here (e.g., save to disk or DB)
+        }
+
+        System.out.println(task);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        TaskRequest response  = taskService.creatTask(task);
+        TaskRequest response  = taskService.creatTask(task ,image );
         return ResponseEntity.ok(response);
     }
 
